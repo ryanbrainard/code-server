@@ -385,6 +385,30 @@ describe("parser", () => {
     })
   })
 
+  it("should use env var CS_DISABLE_PROXY", async () => {
+    process.env.CS_DISABLE_PROXY = "1"
+    const args = parse([])
+    expect(args).toEqual({})
+
+    const defaultArgs = await setDefaults(args)
+    expect(defaultArgs).toEqual({
+      ...defaults,
+      "disable-getting-proxy": true,
+    })
+  })
+
+  it("should use env var CS_DISABLE_PROXY set to true", async () => {
+    process.env.CS_DISABLE_PROXY = "true"
+    const args = parse([])
+    expect(args).toEqual({})
+
+    const defaultArgs = await setDefaults(args)
+    expect(defaultArgs).toEqual({
+      ...defaults,
+      "disable-getting-proxy": true,
+    })
+  })
+
   it("should error if password passed in", () => {
     expect(() => parse(["--password", "supersecret123"])).toThrowError(
       "--password can only be set in the config file or passed in via $PASSWORD",

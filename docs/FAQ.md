@@ -447,6 +447,19 @@ You can pass the flag `--disable-getting-started-override` to `code-server` or
 you can set the environment variable `CS_DISABLE_GETTING_STARTED_OVERRIDE=1` or
 `CS_DISABLE_GETTING_STARTED_OVERRIDE=true`.
 
+## How do I disable the proxy?
+
+You can pass the flag `--disable-proxy` to `code-server` or
+you can set the environment variable `CS_DISABLE_PROXY=1` or
+`CS_DISABLE_PROXY=true`.
+
+Note, this option currently only disables the proxy routes to forwarded ports, including
+the domain and path proxy routes over HTTP and WebSocket; however, it does not
+disable the automatic port forwarding in the VS Code workbench itself. In other words,
+user will still see the Ports tab and notifications, but will not be able to actually
+use access the ports. It is recommended to set `remote.autoForwardPorts` to `false`
+when using the option.
+
 ## How do I disable file download?
 
 You can pass the flag `--disable-file-downloads` to `code-server`
