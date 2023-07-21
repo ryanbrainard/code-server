@@ -43,6 +43,7 @@ describe("parser", () => {
     delete process.env.PASSWORD
     delete process.env.CS_DISABLE_FILE_DOWNLOADS
     delete process.env.CS_DISABLE_GETTING_STARTED_OVERRIDE
+    delete process.env.CS_DISABLE_PROXY
     console.log = jest.fn()
   })
 
@@ -99,6 +100,8 @@ describe("parser", () => {
 
           "--disable-getting-started-override",
 
+          "--disable-proxy",
+
           ["--host", "0.0.0.0"],
           "4",
           "--",
@@ -117,6 +120,7 @@ describe("parser", () => {
       },
       "disable-file-downloads": true,
       "disable-getting-started-override": true,
+      "disable-proxy": true,
       enable: ["feature1", "feature2"],
       help: true,
       host: "0.0.0.0",
@@ -393,7 +397,7 @@ describe("parser", () => {
     const defaultArgs = await setDefaults(args)
     expect(defaultArgs).toEqual({
       ...defaults,
-      "disable-getting-proxy": true,
+      "disable-proxy": true,
     })
   })
 
@@ -405,7 +409,7 @@ describe("parser", () => {
     const defaultArgs = await setDefaults(args)
     expect(defaultArgs).toEqual({
       ...defaults,
-      "disable-getting-proxy": true,
+      "disable-proxy": true,
     })
   })
 
